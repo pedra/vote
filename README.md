@@ -1,9 +1,13 @@
-Vote!
+Vote! {alfa}
 ====
 
 **API para votação on-line** [Dilma que se cuide!]
 
 Colabore com esse projeto com sugestões, críticas, idéias, código . . .
+
+Acesse http://phps.tk/vote e veja esse projeto em funcionamento.
+
+A parte administrativa está em http://phps.tk/admin (senha: 123456).
 
 ===
 
