@@ -3,7 +3,7 @@ Vote! {alfa}
 
 **API para votação on-line** [Dilma que se cuide!]
 
-Colabore com esse projeto com sugestões, críticas, idéias, código . . .
+Colabore com esse projeto com sugestões, críticas, idéias, código e **principalmente design** (please!).
 
 Acesse http://phps.tk/vote e veja esse projeto em funcionamento.
 
