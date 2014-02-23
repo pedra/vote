@@ -1,0 +1,66 @@
+<?php
+session_start();
+
+//DateTime
+date_default_timezone_set('America/Sao_Paulo');
+
+//Defines for url access
+$base = rtrim(str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']), ' /');
+defined('REQST')    || define('REQST', trim(str_replace($base, '', $_SERVER['REQUEST_URI']), ' /'));
+defined('URL')      || define('URL', 'http://'.$_SERVER['SERVER_NAME'].$base.'/');
+
+//Paths
+define('PHP', __DIR__.'/');
+define('CONFIG', PHP.'config/');
+define('BACKUP', CONFIG.'backup/');
+define('LIB', PHP.'lib/');
+define('ROOT', dirname(__DIR__).'/'); 
+
+//Pegando as funções de suporte
+include LIB.'functions.php';
+$ini =  CONFIG.'vote.ini'; 
+$msg = '';
+
+//Router (getController)
+$route = router();
+
+//Pegando os dados do registro
+$dt = getIni($ini);
+
+//Administrador
+if(isset($_POST['logoff'])) logoff();
+define('USER', login($dt));
+
+//Nova senha
+if(isset($_POST['newpasswd']) && trim($_POST['fastlog']) != ''){
+	$dt['users'][USER] = md5(trim($_POST['fastlog']));
+	setIni($ini, $dt);
+	$msg .= 'Nova senha registrada para "'.USER.'".';
+}
+
+//Limpando o registro
+if(isset($_POST['clear'])) $dt = clearIni($ini, $dt);
+if(isset($_POST['clearAll'])) $dt = clearIni($ini, $dt, true);
+
+//Definindo a constante VOTOU (sim/não) - ADMIN vota independente de já ter votado
+define('VOTOU', (loged() ? false : array_key_exists($_SERVER['REMOTE_ADDR'], $dt['eleitores']['ip'])));
+if(VOTOU) $msg .= 'Você já votou nesta eleição!
+	<span>Somente um voto por IP e já votou em <b>'.
+	$dt['eleitores']['ip'][$_SERVER['REMOTE_ADDR']].'</b>.</span>';
+
+//Computando voto!
+if(isset($_POST['somar']) && !VOTOU){
+	$dd = explode('_', $_POST['somar']);
+	$dia = $dd[0];
+	$hora = $dd[1];
+
+	if(isset($dt['votos'][$hora])){
+		$dt['votos'][$hora][$dia] = 1 + $dt['votos'][$hora][$dia];
+		if(USER != 'admin') 
+			$dt['eleitores']['ip'][$_SERVER['REMOTE_ADDR']] = date('d/m/Y').' às '.date('H:i:s');
+
+		//totalizando
+		$dt['votos']['total'] = 1 + $dt['votos']['total'];
+		setIni($ini, $dt);
+	}
+}

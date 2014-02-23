@@ -1,0 +1,76 @@
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans);
+* { padding: 0; margin: 0; font-size: 14px; font-family: 'Droid Sans', sans-serif; 
+	font-weight: normal; transition: .5s;}
+body { background: #567 url(img/bg.png); height: 100%}
+.vote {color:#BBC0C9; padding: 20px; width: 500px; margin: 0 auto;  }
+.att {background:#FFF url(img/error.jpg) right center no-repeat; color:#900; padding: 10px 20px; margin: 10px 0; 
+		text-align: left; font-size: 1.6em; font-weight: bold;}
+.att span {display:block; font-size: 0.7em; color:#000; text-shadow: 0 0 6px #FFF;}
+.att span b { font-size: .9em}
+.total {color:#888; font-size: 0.9em; font-style: italic; text-align: center;}
+b {font-weight: bold; font-size: 1.6em}
+
+h1 { font-size: 54px; color:#070C16; text-shadow:1px 1px 1px #444;}
+h2 { font-size: 26px; margin:30px 0 10px 0;}
+p{ padding: 8px 0}
+label {display:block;}
+input[type=checkbox] {margin-right: 10px}
+.admin { border-top: 1px dashed #666; margin: 20px auto 0 auto; padding: 0}
+.admin input { padding: 5px; width: 150px}
+.login { border: none;}
+.login input {width: 380px}
+.h404 {width: 630px; transition: 1s;}
+.h404 h1 { text-align:center; color: #567; text-shadow:none;}
+.h404 img { width: 100%}
+.h404 a { color:#BBC0C9; text-decoration: none;}
+.h404 a:hover {color:#FFF; text-decoration: underline;}
+
+select { background: #333; color:#DDD; border: 1px solid #444; margin:auto 5px;}
+
+button { background: #333; background-image: linear-gradient(to bottom, #222, #333);
+		color:#999; padding: 7px 17px; border:1px solid #000; border-radius: 5px; cursor: pointer; margin:20px 2px;}
+button:hover {background-image: linear-gradient(to bottom, #363, #494); color:#FFF;}
+button[name=clear]:hover, 
+button[name=clearAll]:hover {background-image: linear-gradient(to bottom, #833, #B44);}
+button[name=logoff]:hover {background-image: linear-gradient(to bottom, #505, #909);}
+
+table th { padding: 5px; color:#000;}
+table td { padding: 0; border:1px solid #666; color:#0F6; text-align: center; width: 62px; height: 50px}			
+table td:hover { box-shadow: 0 0 5px #000}
+table tr.trnull td:first-child {color:#333;}
+table tr.trok td:first-child {color:#FFF;}
+table td.red {color:#777;}
+table td.green {border-color:#777 }
+table td.green button {color:#0F0; padding: 0;}
+table td.first button { background-image: linear-gradient(to bottom, #363, #494); color:#FFF;}
+table td.first button:hover { background: #494}
+table td:first-child { color:#000; border: none; box-shadow: none}
+
+table td button { width: 100%; height: 50px; margin: 0; background: transparent; border: none; border-radius: 0}
+table td button:hover { background: transparent }
+
+/* Menor que 690 pixels.*/ 
+@media screen and (max-width: 690px) {
+	body { padding: 0 10px} 
+    .h404 {padding:0; margin: 0;  font-size: 0.75em; width: 100%}
+    h1 { font-size: 4em}
+}
+
+/* Menor que 570 pixels.*/ 
+@media screen and (max-width: 570px) {
+	body { padding: 0 10px}
+    .vote, 
+    .h404 {padding:0; margin: 0;  font-size: 0.75em; width: 100%}
+    .h404 p, .h404 a { font-size: 0.9em}
+    h1 { font-size: 4em}
+    h2 { font-size: 2em}
+}
+
+/* Menor que 400 pixels.*/ 
+@media screen and (max-width: 400px) {
+	body { padding: 0 10px}
+    .vote, 
+    .h404 {padding:0; margin: 0;  font-size: 0.75em; width:380px}
+    h1 { font-size: 4em}
+    h2 { font-size: 2em}
+}
